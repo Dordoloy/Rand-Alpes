@@ -1,5 +1,5 @@
 import {View} from 'react-native';
-import {Button, Card, Paragraph, Title} from 'react-native-paper';
+import {Button, Card, Paragraph, Title, Avatar} from 'react-native-paper';
 import React from 'react';
 
 type Props = {
@@ -13,15 +13,25 @@ type Props = {
 };
 
 const HikeCard: React.FC<Props> = (props) => (
-  <View style={{marginBottom: 15}}>
-    <Card>
+  <View style={{padding: 20, paddingBottom: 10}}>
+    <Card onPress={props.onPress}>
       <Card.Content>
         <Title>{props.libelle}</Title>
         <Paragraph>
-          <Paragraph>{props.massif}</Paragraph> -{' '}
-          <Paragraph>{props.denivellee}m</Paragraph> -{' '}
-          <Paragraph>{props.duree}</Paragraph> -
           <Paragraph>
+            <Avatar.Icon size={15} icon="flag-triangle" /> {props.massif}
+          </Paragraph>{' '}
+          <Paragraph>
+            {' '}
+            <Avatar.Icon size={15} icon="trending-up" /> {props.denivellee}m
+          </Paragraph>{' '}
+          <Paragraph>
+            {' '}
+            <Avatar.Icon size={15} icon="av-timer" /> {props.duree}
+          </Paragraph>{' '}
+          <Paragraph>
+            {' '}
+            <Avatar.Icon size={15} icon="grave-stone" />{' '}
             {props.difficulte === '1/4'
               ? 'Facile'
               : props.difficulte === '2/4'
@@ -36,7 +46,7 @@ const HikeCard: React.FC<Props> = (props) => (
       </Card.Content>
       <Card.Cover source={{uri: `${props.img}`}} />
       <Card.Actions>
-        <Button>PLUS D'INFO</Button>
+        <Button onPress={props.onPress}>PLUS D'INFO</Button>
       </Card.Actions>
     </Card>
   </View>

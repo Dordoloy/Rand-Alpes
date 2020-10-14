@@ -1,11 +1,17 @@
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import HikeCard from '../../components/HikeCard/HikeCard';
-import {Appbar} from 'react-native-paper';
+import HeaderBar from '../../components/HeaderBar/HeaderBar';
 
-function HomeView() {
+function HomeView({navigation}) {
+  const openMoreInfo = () => {
+    console.log('test');
+    navigation.navigate('MoreInfo');
+  };
+
   const renderItem = ({item}) => (
     <HikeCard
+      onPress={openMoreInfo}
       libelle={item.libelle}
       massif={item.massif.libelle}
       img={item.img}
@@ -30,8 +36,8 @@ function HomeView() {
   }, []);
 
   return (
-    <View style={{flex: 1, padding: 20}}>
-      <Text>RAND'APLES</Text>
+    <View>
+      <HeaderBar />
       {isLoading ? (
         <ActivityIndicator />
       ) : (
