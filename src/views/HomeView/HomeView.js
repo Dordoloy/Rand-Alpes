@@ -1,37 +1,11 @@
 import {ActivityIndicator, FlatList, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Card, Title, Paragraph, Button} from 'react-native-paper';
-
-const Item = ({libelle, massif, img, denivellee, duree, difficulte}) => (
-  <View>
-    <Card>
-      <Card.Content>
-        <Title>{libelle}</Title>
-        <Paragraph>
-          <Paragraph>{massif}</Paragraph> - <Paragraph>{denivellee}m</Paragraph>{' '}
-          - <Paragraph>{duree}</Paragraph> - {console.log('d', {difficulte})}
-          <Paragraph>
-            {difficulte === '1/4'
-              ? 'Facile'
-              : difficulte === '2/4'
-              ? 'Moyen'
-              : difficulte === '3/4'
-              ? 'Difficile'
-              : 'Très difficile'}
-          </Paragraph>
-        </Paragraph>
-      </Card.Content>
-      <Card.Cover source={{uri: `${img}`}} />
-      <Card.Actions>
-        <Button>PLUS D'INFO</Button>
-      </Card.Actions>
-    </Card>
-  </View>
-);
+import HikeCard from '../../components/HikeCard/HikeCard';
+import {Appbar} from 'react-native-paper';
 
 function HomeView() {
   const renderItem = ({item}) => (
-    <Item
+    <HikeCard
       libelle={item.libelle}
       massif={item.massif.libelle}
       img={item.img}
@@ -56,7 +30,7 @@ function HomeView() {
   }, []);
 
   return (
-    <View style={{flex: 1, padding: 24}}>
+    <View style={{flex: 1, padding: 20}}>
       <Text>RAND'APLES</Text>
       {isLoading ? (
         <ActivityIndicator />
